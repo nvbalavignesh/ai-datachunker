@@ -35,3 +35,20 @@ curl -X POST http://localhost:8000/chunk \
 
 Install dependencies and run tests with `pytest`.
 
+## Embedding Utility
+
+`EmbeddingGenerator` wraps the [`sentence-transformers`](https://www.sbert.net/) library to
+produce vector embeddings suitable for retrieval-augmented generation (RAG)
+workflows:
+
+```python
+from datachunker import EmbeddingConfig, EmbeddingGenerator
+
+config = EmbeddingConfig(model_name="sentence-transformers/all-MiniLM-L6-v2")
+embedder = EmbeddingGenerator(config)
+vectors = embedder.embed(["my text"])  # returns a list of embedding vectors
+```
+
+The optional dependency `sentence-transformers` must be installed to use this
+class.
+
